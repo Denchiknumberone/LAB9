@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Расчет стоимости доставки</title>
+</head>
+<body>
+    <h2>Оформление доставки</h2>
+    <form id="deliveryForm">
+        <label>Тип доставки:
+            <select id="type">
+                <option value="city">По городу</option>
+                <option value="region">По области</option>
+            </select>
+        </label><br><br>
+        <label>Стоимость товаров (руб):
+            <input type="number" id="price" value="0">
+        </label><br><br>
+        <button type="button" id="calculateBtn" onclick="calculate()">Рассчитать</button>
+    </form>
+    <h3>Итог: <span id="result">0</span> руб.</h3>
+
+    <script>
+        function calculate() {
+            const type = document.getElementById('type').value;
+            const price = parseFloat(document.getElementById('price').value) || 0;
+            let cost = 0;
+            if (type === 'city') {
+                cost = (price >= 10000) ? 0 : 500;
+            } else {
+                cost = (price >= 10000) ? 0 : 1000;
+            }
+            document.getElementById('result').innerText = cost;
+        }
+    </script>
+</body>
+</html>
